@@ -50,7 +50,7 @@
         <div class="top-head">
             <div class="container">
                 <div class="logo">
-                    <a href="/?a=home">
+                    <a href="#">
                         <img src="{{asset('img/header-main.png')}}">
                     </a> <span style="margin-top: 7px; text-transform: uppercase;margin-left: 10px">Investor Dashboard</span>
                 </div>
@@ -63,7 +63,7 @@
                             <path d="M23.2,12.1A11.1,11.1,0,1,1,12.1,1,11.1,11.1,0,0,1,23.2,12.1Z" transform="translate(0 0)" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
                         </g>
                     </svg>
-                    <div class="profile-user"> <span>doihai132</span>
+                    <div class="profile-user"> <span>User</span>
                         <svg viewBox="0 0 5.55 10.29">
                             <g id="single-arrow" viewBox="0 0 5.55 10.29">
 
@@ -75,7 +75,7 @@
                     </div>
                     <div class="profile-dropdown">
                         <div class="user-name">doihai132</div>
-                        <div><a><span>linhchun14@gmail.com</span></a></div>
+                        <div><a><span>user@email.com</span></a></div>
                         <div class="edit-profile"><a href="?a=edit_account">
                                 <svg viewBox="0 0 14.2 14.2">
                                     <g id="setting-icon" viewBox="0 0 14.2 14.2">
@@ -87,7 +87,7 @@
                                     </g>
                                 </svg>
                                 Account Settings</a></div>
-                        <div><a href="?a=logout">Logout</a></div>
+                        <div><a href="/logout">Logout</a></div>
                     </div>
                 </div>
               

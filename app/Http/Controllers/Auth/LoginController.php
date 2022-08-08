@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class LoginController extends Controller
             }else if (auth()->user()->type == 'manager') {
                 return redirect()->route('manager.home');
             }else{
-                return redirect()->route('user.dashboard');
+                return redirect()->route('userdashboard');
             }
         }else{
             return redirect()->route('login')

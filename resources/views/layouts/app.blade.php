@@ -42,7 +42,7 @@
 	</script>
 </head>
 
-<body  @if (\Request::is('login','register')) class="inner-page" @endif>
+<body  @if (\Request::is('login','register','password/reset')) class="inner-page" @endif>
 	
         @if (\Request::is('/'))  
         <header class="home main-header">
@@ -50,7 +50,7 @@
 		<div class="shape-1"></div>
 		<div class="shape-2"></div>
         @endif
-        @if (\Request::is('login','register'))  
+        @if (\Request::is('login','register','password/reset'))  
         <header class="home main-header">
             <div class="header-bg"></div>
         @endif
@@ -71,10 +71,16 @@
 						</ul>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
-						<div class="login-register">
+						
+						@auth
+
+  @else
+  <div class="login-register">
 							<div class="login"> <a href="/login">Login</a> </div>
 							<div class="register"> <a href="/register">Register</a> </div>
 						</div>
+@endauth
+
 						<div class="menu-icon">
 							<svg viewBox="0 0 114.03 93">
 								<g id="menuIcon" viewBox="0 0 114.03 93">

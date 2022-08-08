@@ -59,7 +59,7 @@ function checkform() {
 
 	<div class="row-form">
 		<div class="input-holder">
-              <input type="text" id="email" name="email" value='' placeholder="email" required autocomplete="email" autofocus> <span class="input-title">username</span>
+              <input type="text" id="email" name="email" value='' placeholder="email" required autocomplete="email" autofocus> <span class="input-title">Email</span>
 			  @error('email')
 			  <span class="invalid-feedback" role="alert">
 				  <strong>{{ $message }}</strong>
@@ -110,7 +110,7 @@ function checkform() {
 
 </form>
 </div>
-<div class="inner-caption"> <span> <a href="?a=signup">Click here to create a new account</a> </span> phemesafetrade.com  Copyright &copy; <script>document.write(new Date().getFullYear())</script>. All Rights Reserved.</div>
+<div class="inner-caption"> <span> <a href="{{ route('register') }}">Click here to create a new account</a> </span> phemesafetrade.com  Copyright &copy; <script>document.write(new Date().getFullYear())</script>. All Rights Reserved.</div>
 </div>
 </div>
 <div class="hidden-menu">

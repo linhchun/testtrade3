@@ -66,7 +66,7 @@
                         </a>
                         <div class="about-page__box-text">
                             <p>phemesafetrade.com
-                                <br>Registred USA Company Number #13378232 </p> <a href="https://phemesafetrade.com/?a=profile" target="_blank" style="color: #ffd834;min-width: 115px;">More information ></a> </div>
+                                <br>Registred USA Company Number #13378232 </p> <a href="#" target="_blank" style="color: #ffd834;min-width: 115px;">More information ></a> </div>
                     </div>
                 </div>
             </div>

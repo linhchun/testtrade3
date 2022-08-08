@@ -247,7 +247,7 @@
                 
                 
 
-               <div class="inner-caption"> <span> Already have an account? <a href="?a=login">Login Here</a> </span>
+               <div class="inner-caption"> <span> Already have an account? <a href="{{ route('login') }}">Login Here</a> </span>
                     phemesafetrade.com © 2021 Copyright. All Rights Reserved.</div>
             </div>
         </div>
