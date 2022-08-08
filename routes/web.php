@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Auth;
 */
   
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
 Auth::routes();
   
 /* Ruta para los usuarios */
@@ -38,6 +39,10 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 });
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('userdashboard', function () {
+    return view('userdashboard');
+});
+Route::get('deposit', function () {
+    return view('deposit');
+});
