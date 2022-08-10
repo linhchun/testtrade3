@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <style>
     .codecx {
         position: absolute;
@@ -26,6 +27,45 @@
     }
 
 </style>
+<header class="home main-header">
+    <div class="header-bg"></div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="top-header" style="padding-right:0; padding-left:0">
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <div class="logo">
+                    <a href="/"> <img src="{{asset('img/header-main.png')}}"> </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                @include('porfoliohelpmenu');
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                
+                @auth
+
+@else
+<div class="login-register">
+                    <div class="login"> <a href="/login">Login</a> </div>
+                    <div class="register"> <a href="/register">Register</a> </div>
+                </div>
+@endauth
+
+                <div class="menu-icon">
+                    <svg viewBox="0 0 114.03 93">
+                        <g id="menuIcon" viewBox="0 0 114.03 93">
+                            <path d="M297.64,371.67h114m-114,39h114m-114,39h114" transform="translate(-297.64 -364.17)" fill="none" stroke-miterlimit="10" stroke-width="15"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</header>
 <div class="container">
     <div class="inner-content signup-content">
         <div class="signup-steps">

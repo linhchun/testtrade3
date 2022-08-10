@@ -43,22 +43,21 @@ class LoginController extends Controller
         $input = $request->all();
      
         $this->validate($request, [
-            'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required',
         ]);
      
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+        if(auth()->attempt(array('name' => $input['name'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
             }else if (auth()->user()->type == 'manager') {
                 return redirect()->route('manager.home');
             }else{
-                return redirect()->route('userdashboard');
+                return redirect('userdashboard');
             }
         }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+            return back()->with('error','The user name or password that you entered does not match our records.');
         }
           
     }

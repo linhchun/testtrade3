@@ -6,13 +6,20 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>phemesafetrade.com</title>
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script> var _token = '<?php echo csrf_token(); ?>'; </script>
+
+
     <meta name="designer" href="https://uniquehyips.com">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="shortcut icon" href="styles/img/favicon.ico?v=1.2" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}" />
+  
+    
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/main1.css')}}" />
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 
@@ -50,7 +57,12 @@
         <div class="top-head">
             <div class="container">
                 <div class="logo">
-                    <a href="#">
+                    <a href="@if(auth()->user()->name =='Admin')
+                        /admin
+                    @else
+/userdashboard
+                    @endif
+">
                         <img src="{{asset('img/header-main.png')}}">
                     </a> <span style="margin-top: 7px; text-transform: uppercase;margin-left: 10px">Investor Dashboard</span>
                 </div>
@@ -63,7 +75,9 @@
                             <path d="M23.2,12.1A11.1,11.1,0,1,1,12.1,1,11.1,11.1,0,0,1,23.2,12.1Z" transform="translate(0 0)" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
                         </g>
                     </svg>
-                    <div class="profile-user"> <span>User</span>
+                    <div class="profile-user"> <span>
+                        {{ auth()->user()->name }}
+                    </span>
                         <svg viewBox="0 0 5.55 10.29">
                             <g id="single-arrow" viewBox="0 0 5.55 10.29">
 
@@ -74,9 +88,9 @@
                         </svg>
                     </div>
                     <div class="profile-dropdown">
-                        <div class="user-name">doihai132</div>
-                        <div><a><span>user@email.com</span></a></div>
-                        <div class="edit-profile"><a href="?a=edit_account">
+                        <div class="user-name">{{ auth()->user()->name }}</div>
+                        <div><a><span>{{ auth()->user()->email }}</span></a></div>
+                        <div class="edit-profile"><a href="/profile">
                                 <svg viewBox="0 0 14.2 14.2">
                                     <g id="setting-icon" viewBox="0 0 14.2 14.2">
 
@@ -108,7 +122,7 @@
         <div class="dashboard-menu">
             <div class="container">
                 <ul class="dashboard-nav">
-                    <li class="active"> <a href="?a=account">
+                    <li class="active"> <a href="/userdashboard">
                             <svg viewBox="0 0 15.6 15.48">
                                 <g id="dashboard-icon" viewBox="0 0 15.6 15.48">
 
@@ -120,7 +134,7 @@
                                 </g>
                             </svg>
                             My Dashboard </a> </li>
-                    <li> <a href="?a=deposit">
+                    <li> <a href="/deposit">
                             <svg viewBox="0 0 15.72 13.07">
                                 <g id="invest-icon" viewBox="0 0 15.72 13.07">
                                     <rect x="0.5" y="4.66" width="14.72" height="7.91" rx="1.27" ry="1.27" fill="none" stroke-miterlimit="10"></rect>
@@ -130,7 +144,7 @@
                             </svg>
                             Make Investment </a>
                     </li>
-                    <li> <a href="?a=withdraw">
+                    <li> <a href="/withdraw">
                             <svg viewBox="0 0 15.48 13.88">
                                 <g id="withdraw-icon" viewBox="0 0 15.48 13.88">
                                     <path d="M11,6.93h2a2,2,0,0,0,2-2V2.47a2,2,0,0,0-2-2H2.48a2,2,0,0,0-2,2V5a2,2,0,0,0,2,2H4.17" transform="translate(0 0)" fill="none" stroke-miterlimit="10"></path>
@@ -142,7 +156,7 @@
                                 </g>
                             </svg>
                             Withdraw Funds </a> </li>
-                    <li> <a href="?a=deposit_list">
+                    <li> <a href="/portfolio">
                             <svg viewBox="0 0 12.66 9.1">
                                 <g id="investlist-icon" viewBox="0 0 12.66 9.1">
                                     <g>
@@ -156,7 +170,7 @@
                                 </g>
                             </svg>
                             Manage Portfolio </a> </li>
-                    <li> <a href="?a=earnings">
+                    <li> <a href="/transactions">
                             <svg viewBox="0 0 13.88 17.17">
                                 <g id="transaction-icon" viewBox="0 0 13.88 17.17">
                                     <rect x="0.5" y="4.98" width="12.88" height="7.24" rx="0.9" ry="0.9" fill="none" stroke-miterlimit="10"></rect>
@@ -166,7 +180,7 @@
                                 </g>
                             </svg>
                             Transactions </a> </li>
-                    <li> <a href="?a=referals">
+                    <li> <a href="/referals">
                             <svg viewBox="0 0 19.89 26.3">
                                 <g id="referrals-icon" viewBox="0 0 19.89 26.3">
 
@@ -177,7 +191,7 @@
                                 </g>
                             </svg>
                             Referrals </a> </li>
-                    <li> <a href="?a=security">
+                    <li> <a href="/twofactor">
                             <svg viewBox="0 0 13.51 19.38">
                                 <g id="security" viewBox="0 0 13.51 19.38">
 
@@ -200,11 +214,23 @@
             </div>
         </div>
     </header>
+    
 
     @yield('content')
+    <div class="container">
+        <ul class="general-menu">
+            <li> <a href="/">Homepage</a> </li>
+            <li> <a href="/cprofile">Company Profile</a> </li>
+            
+            <li> <a href="/helpcenter">Help Center</a> </li>
+        </ul>
+    </div>
 <style>
     tbody, td, tfoot, th, thead, tr {
         font-size: 15px;
+    }
+    tbody tr{
+        border-bottom: 4px solid #dee2e6;
     }
     .sbmt {
             padding: 7px 20px;
@@ -214,20 +240,48 @@
     color: #fff;
     border-radius: 5px;
     }
+.table th, .table td {
+    padding: 0.75rem;
+    line-height: 1.5;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+}
+    .table>:not(caption)>*>* {
+    
+ 
+        background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    }
+    table {
+    --bs-table-bg: transparent;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    {}
 </style>  
 
 
     
     <script>
-        document.write("<script type='text/javascript' src='{{asset('js/daty.js')}}" + Date.now() + "'><\/script>");
+        document.write("<script type='text/javascript' src='{{asset('js/daty.js')}}'><\/script>");
 
     </script>
     <script>
-        document.write("<script type='text/javascript' src='{{asset('datyinvest.js')}}" + Date.now() + "'><\/script>");
+        document.write("<script type='text/javascript' src='{{asset('js/datyinvest.js')}}'><\/script>");
 
     </script>
     <script>
-        document.write("<script type='text/javascript' src='{{asset('styles/js/datywith.js')}}" + Date.now() + "'><\/script>");
+        document.write("<script type='text/javascript' src='{{asset('styles/js/datywith.js')}}'><\/script>");
 
     </script>
     <script src="{{asset('js/general.js')}}"></script>

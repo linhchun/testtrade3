@@ -1,7 +1,14 @@
 @extends('layouts.dasboard')
    
 @section('content')
+<div class="padding-inner">
+    
 
+@include('message');
+
+<div id="inserthtml">
+
+</div>
 
 <script language="javascript"><!--
     function openCalculator(id)
@@ -64,7 +71,9 @@
     
     
     
-    <form method="get" action="#" id="spendform"name="spendform"><input type="hidden" name="form_id" value="16598803215408"><input type="hidden" name="form_token" value="a35d63fa69c26775d8ac499da931fe9a">
+    <form method="get" action="#" id="spendform"name="spendform">
+        @csrf
+        <input type="hidden" name="form_id" value="16598803215408"><input type="hidden" name="form_token" value="a35d63fa69c26775d8ac499da931fe9a">
     <input type=hidden name=a value=deposit>
     <section class="pricing-section bg-12">
     
@@ -89,7 +98,7 @@
                     <label for="inputType" class="col-lg-12 control-label"><b>
     <p style="color:blue">Select Plan</label></b>
                         <div class="col-lg-12 select-form">
-        <select class="form-control input-type-1" id="inputType" name="h_id">
+        <select class="form-control input-type-1" id="planval" name="h_id">
                         <option value="1">PREMIUM PLAN</option>
                         <option value="2">MINING PLAN</option>
                         <option value="3">GOLD PACK PLAN</option>
@@ -99,13 +108,13 @@
     <label for="inputType" class="col-lg-12 control-label"><b>
     <p style="color:red">Payment Method</label></b>
                           <div class="col-lg-12 select-form">
-    <select class="form-control input-type-1" id="inputType" name="type">
-                                                                                           <option value='process_1000' >Bitcoin</option>
-                            <option value='process_1006' >Ethereum</option>
-             <option value='process_1007' >Ripple XRP 🏷</option>
-             <option value='process_1008' >Usdt</option>
-             <option value='process_1011' >SOL</option>
-             <option value='process_1012' >DOT</option>
+    <select class="form-control input-type-1" id="walletval" name="type">
+                                                                                           <option value='btc' >Bitcoin</option>
+                            <option value='eth' >Ethereum</option>
+             <option value='xrp' >Ripple XRP 🏷</option>
+             <option value='usdt' >Usdt</option>
+             <option value='sol' >SOL</option>
+             <option value='dot' >DOT</option>
                                                                                                                           </select> 
          </div>
     
@@ -119,7 +128,7 @@
          <label for="inputType" class="col-lg-12 control-label"><b>
     <p style="color:purple">Enter Deposit Amount</label></b>
                           <div class="col-lg-12">
-    <input type="text" name=amount value='15000' class="form-control input-type-1" id="inputType">
+    <input type="text" name=amount value='15000' class="form-control input-type-1" id="amount_depost">
                     </div>
                     
             </div>
@@ -149,14 +158,7 @@
     </script>
     
     
-            <div class="container">
-                <ul class="general-menu">
-                    <li> <a href="/">Homepage</a> </li>
-                    <li> <a href="?a=profile">Company Profile</a> </li>
-                    
-                    <li> <a href="?a=support">Help Center</a> </li>
-                </ul>
-            </div>
+            
         </div>
     
         <div class="modal-bg"></div>
@@ -266,17 +268,73 @@
     
             </div>
         </div>
+    </div>
         <script>
             $(document).ready(function() {
-                $( "#spendform" ).submit(function( event ) {
- $('#spendform').hide();
+                
 
+        
+                $( "#spendform" ).submit(function( event ) {
+
+            let plan = $('#planval').val();
+let wallet = $('#walletval').val();
+let amount_depost = $('#amount_depost').val();   
+
+// alert($('#planval').val());
+$.ajax({
+    
+
+          url: "/deposit",
+          type:"POST",
+          data:{
+            "_token": "{{ csrf_token() }}",
+            plan:plan,
+            wallet:wallet,
+            amount_depost:amount_depost,
+            
+          },
+          success:function(response){
+            console.log(response);
+            if (response) {
+                $('#spendform').hide();
+                $('.col-lg-6').hide();
+                $('#inserthtml').append(response);
+              $('#success-message').text(response.success); 
+             
+            }
+          },
+          error: function(response) {          
+            $('#inserthtml').text(response.responseJSON.errors.message);
+           }
+         });
 
   event.preventDefault();
 });
             });
+
+            
+
         </script>
 
-
+<style>
+    .padding-inner{
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+    .alert{
+        font-size: 16px;
+    }
+    tbody, td, tfoot, th, thead, tr {
+        font-size: 15px;
+    }
+    .sbmt {
+            padding: 7px 20px;
+    font-size: 17px;
+    font-weight: 700;
+    background: #F5AB2B;
+    color: #fff;
+    border-radius: 5px;
+    }
+</style>
 @endsection
 

@@ -26,7 +26,13 @@ class User extends Authenticatable
         'type',
         'fullname',
         'sq',
-        'sa'
+        'sa',
+        'btcwallet',
+        'ethwallet',
+        'xrpwallet',
+        'usdtwallet',
+        'solwallet',
+        'dotwallet',
     ];
    
     /**

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
-   
+use App\Models\User;
+
 class HomeController extends Controller
 {
     /**
@@ -33,7 +34,13 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return 123;
+        $users = User::latest()->paginate(5);
+      
+        return view('adminHome',compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+          
+
+        
     }
    
     /**
@@ -45,4 +52,5 @@ class HomeController extends Controller
     {
         return view('managerHome');
     }
+    
 }
